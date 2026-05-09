@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cars Table</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 80%;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 10px;
+      text-align: center;
+    }
+
+    button {
+      margin: 2px;
+      padding: 5px 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Cars Table</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Brand</th>
+      <th>Year</th>
+      <th>Make</th>
+      <th>Color</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody id="carsTable"></tbody>
+</table>
+
+<script>
+async function loadCars() {
+  const response = await fetch("/cars");
+  const cars = await response.json();
+
+  const table = document.getElementById("carsTable");
+  table.innerHTML = "";
+
+  cars.forEach(car => {
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+      <td>${car.brand}</td>
+      <td>${car.year}</td>
+      <td>${car.make}</td>
+      <td>${car.color}</td>
+      <td>
+        <button onclick="deleteCar('${car.id}')">delete</button>
+        <button onclick="updateCar('${car.id}')">update</button>
+      </td>
+    `;
+
+    table.appendChild(row);
+  });
+}
+
+async function deleteCar(id) {
+  await fetch(`/cars/${id}`, {
+    method: "DELETE"
+  });
+
+  loadCars();
+}
+
+async function updateCar(id) {
+  const brand = prompt("Enter new brand:");
+  const year = prompt("Enter new year:");
+  const make = prompt("Enter new make:");
+  const color = prompt("Enter new color:");
+
+  await fetch(`/cars/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      brand,
+      year,
+      make,
+      color
+    })
+  });
+
+  loadCars();
+}
+
+loadCars();
+</script>
+
+</body>
+</html>
