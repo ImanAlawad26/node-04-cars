@@ -1,42 +1,30 @@
 # Node 04 Cars Table
 
-This project uses Node.js, Express, HTML, and JavaScript to display and manage a table of cars.
+This project uses Node.js, Express, HTML, and JavaScript to display a table of cars.
 
 ## Features
 
-- Display cars in a table
-- Delete cars
-- Update cars
-- Automatically refresh the table after changes
+- Shows cars in a table
+- Delete button removes a car
+- Update button changes car information
+- Table refreshes automatically after changes
 
 ## How It Works
 
-When the page loads, JavaScript sends a GET request to `/cars`.
+When the page loads, JavaScript sends a request to the server to get the list of cars.
 
-The Node.js server responds with a JSON array of cars.
+The cars are displayed inside an HTML table.
 
-JavaScript loops through the array and creates table rows dynamically.
+Each row has:
+- a delete button
+- an update button
 
-## Delete Function
+The delete button removes the selected car from the table.
 
-Each row contains a delete button.
+The update button asks the user for new values and updates the car information.
 
-When the button is clicked:
+After deleting or updating, the table reloads so the changes appear immediately.
 
-1. JavaScript sends a DELETE request to `/cars/:id`
-2. The server removes the matching car
-3. The table reloads automatically
-
-## Update Function
-
-Each row also contains an update button.
-
-When clicked:
-
-1. The user enters new values using prompts
-2. JavaScript sends a PUT request to `/cars/:id`
-3. The server updates the car information
-4. The table reloads automatically
 ## Screenshots
 
 ### Cars Table
