@@ -1,4 +1,3 @@
-# node-04-cars
 # Node 04 Cars Table
 
 This project uses Node.js, Express, HTML, and JavaScript to display and manage a table of cars.
@@ -38,3 +37,16 @@ When clicked:
 2. JavaScript sends a PUT request to `/cars/:id`
 3. The server updates the car information
 4. The table reloads automatically
+## Screenshots
+
+### Cars Table
+
+![Cars Table](screenshots/cars-table.png.png)
+
+### Updated Car
+
+![Updated Car](screenshots/cars-table.update.png.png)
+
+### Deleted Car
+
+![Deleted Car](screenshots/cars-table.delete.png.png)
